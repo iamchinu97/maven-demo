@@ -67,11 +67,33 @@
 	</dependencyManagement>
 
 	<build>
+	
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+			
 			 <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -108,27 +130,9 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>${jacoco.version}</version>
-			<executions>
-				<execution>
-				<goals>
-					<goal>prepare-agent</goal>
-					</goals>
-					</execution>
-					<execution>
-					<id>report</id>
-					<phase>prepare-package</phase>
-					<goals>
-					<goal>report</goal>
-				</goals>
-				</execution>
-			</executions>
-			</plugin>
             	
 		</plugins>
 	</build>
+
 
 </project>
